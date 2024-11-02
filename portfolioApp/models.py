@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 class Student(models.Model):
     name = models.CharField(max_length=200)
@@ -29,5 +30,13 @@ class SkillsDetails(models.Model):
     relatedskills = models.TextField()
     fk_Skills = models.ForeignKey(Skills, on_delete=models.CASCADE, related_name='skills_details')
     
+class Project(models.Model):
+    title = models.CharField(max_length=100)
+    descriptions = models.CharField(max_length=1000)
+    usedSkills = models.CharField(max_length=200)
+    
+    
 class Suggestion(models.Model):
+    email = models.EmailField(max_length=254, unique=True)
     message = models.TextField()
+    date = models.DateTimeField(_("Date"), auto_now_add=True)
