@@ -24,6 +24,7 @@ class Experience(models.Model):
 
 class Skills(models.Model):
     skills = models.CharField(max_length=150)  # Corrected max_length
+    skills_logo = models.CharField(max_length=500, default='null')
     fk_student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='skills_details')
 
 class SkillsDetails(models.Model):
