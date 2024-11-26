@@ -4,7 +4,7 @@ from rest_framework import status
 
 # Import models and serializers
 from .models import Student, Skills, Experience, Project
-from .serializers import StudentSerializer, SkillsSerializer, ExperienceSerializer, ProjectSerializer
+from .serializers import StudentSerializer, SkillsSerializer, ExperienceSerializer, ProjectSerializer, SuggestionSerializer
 
 @api_view(['GET'])
 def GetData(request):
@@ -77,3 +77,27 @@ def Projects(request):
     
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+   
+@api_view(['POST'])
+def Suggestions(request):
+    try:
+        serializer = SuggestionSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                {"message": "Suggestion submitted successfully!"},
+                status=status.HTTP_201_CREATED
+            )
+        return Response(
+            {"errors": serializer.errors},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        return Response(
+            {"message": "An unexpected error occurred. Please try again later."},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+    
+    
+    

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Student, StudentDetails,Skills,SkillsDetails,Experience, Project
+from .models import Student, StudentDetails,Skills,SkillsDetails,Experience, Project, Suggestion
 
 class StudentDetailsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,7 +34,11 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
-    
+        
+class SuggestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Suggestion
+        fields = ['email', 'name', 'message']
 
 
     

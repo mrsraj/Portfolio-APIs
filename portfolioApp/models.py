@@ -39,5 +39,6 @@ class Project(models.Model):
     
 class Suggestion(models.Model):
     email = models.EmailField(max_length=254, unique=True)
+    name = models.TextField(max_length=100, default=None)
     message = models.TextField()
     date = models.DateTimeField(_("Date"), auto_now_add=True)

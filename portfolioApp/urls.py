@@ -6,4 +6,5 @@ urlpatterns = [
     path('api/skills', views.GetSkills),
     path('api/experience', views.Experiences),
     path('api/project', views.Projects),
+    path('api/suggestions', views.Suggestions)
 ]
